@@ -7,7 +7,7 @@ import * as Location from 'expo-location';
 import Loading from './Components/Loading';
 import Weather from './Components/Weather';
 
-const WEATHER_API_KEY = "28400f1b8d865e440f536f0be8364bde";
+const WEATHER_API_KEY = {YOUR_PERSONAL_KEY};
 const BASE_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather?";
 
 export default function App() {
