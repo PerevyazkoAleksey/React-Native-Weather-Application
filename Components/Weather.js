@@ -7,63 +7,78 @@ import WeatherStyle from '../assets/style/WeatherStyle.js'
 const weatherOptions = {
   Rain: {
     iconName: "rainy",
-    gradient: ['#4c669f','#192f6b']
+    gradient: ['#4c669f','#192f6b'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Clouds: {
     iconName: "cloudy",
-    gradient: ['#00B4DB','#0083B0']
+    gradient: ['#00B4DB','#0083B0'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Snow: {
     iconName: 'snow',
-    gradient: ['#83a4d4', '#b6fbff']
+    gradient: ['#83a4d4', '#b6fbff'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Thunderstorm: {
     iconName: 'thunderstorm',
-    gradient: ['#4B79A1','#283E51']
+    gradient: ['#4B79A1','#283E51'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Drizzle: {
     iconName: 'thunderstorm',
-    gradient: ['#1A2980','#26D0CE']
+    gradient: ['#1A2980','#26D0CE'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Clear: {
     iconName: 'sunny',
-    gradient: ['#2BC0E4','#EAECC6']
+    gradient: ['#2BC0E4','#EAECC6'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Mist: {
     iconName: 'cloud',
-    gradient: ['#757F9A','#D7DDE8']
+    gradient: ['#757F9A','#D7DDE8'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Smoke: {
     iconName: 'weather-windy',
-    gradient: ['#0F2027','#203A43','#2C5364']
+    gradient: ['#0F2027','#203A43','#2C5364'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Haze: {
     iconName: 'weather-hazy',
-    gradient: ['#757F9A','#D7DDE8']
+    gradient: ['#757F9A','#D7DDE8'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Dust: {
     iconName: 'weather-windy-variant',
-    gradient: ['#6D6027','#D3CBB8']
+    gradient: ['#6D6027','#D3CBB8'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Fog: {
     iconName: 'weather-fog',
-    gradient: ['#757F9A','#D7DDE8']
+    gradient: ['#757F9A','#D7DDE8'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Sand: {
     iconName: 'wind',
-    gradient: ['#6D6027','#D3CBB8']
+    gradient: ['#6D6027','#D3CBB8'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Ash: {
     iconName: 'weather-fog',
-    gradient: ['#0F2027','#203A43','#2C5364']
+    gradient: ['#0F2027','#203A43','#2C5364'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Squall: {
     iconName: 'rainy',
-    gradient: ['#bdc3c7','#2c3e50']
+    gradient: ['#bdc3c7','#2c3e50'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   },
   Tornado: {
     iconName: 'weather-tornado',
-    gradient: ['#bdc3c7','#2c3e50']
+    gradient: ['#bdc3c7','#2c3e50'],
+    daysGradient: ['#045beb', '#00a4ff','#ddff7b'],
   }
 }
 
@@ -90,7 +105,7 @@ export default function Weather({data, condition}) {
         <Text style={WeatherStyle.days_item_content}>{day}</Text>
         <Ionicons name={weatherOptions[condition].iconName} size={18} color='white' style={{marginRight: '5%'}}/>
         <Text style={WeatherStyle.text}>5</Text>
-        <LinearGradient colors={['#0060a8', '#09790e' ,'#ffd600']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} locations={[0.2, 0.6, 1]} style={WeatherStyle.indicator}>
+        <LinearGradient colors={weatherOptions[condition].daysGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} locations={[0.2, 0.5, 1]} style={WeatherStyle.indicator}>
           <View style={{width:9, backgroundColor:'#fff',height: 9, marginLeft: ((temp-1)/temp)*100+'%', borderRadius: '50%'}}></View>
         </LinearGradient>
         <Text style={WeatherStyle.text}>{temp}</Text>
@@ -112,8 +127,7 @@ export default function Weather({data, condition}) {
               <Text style={WeatherStyle.temp_text}>{Math.round(data.main.temp)}°C</Text>
           </View>
           <View style={WeatherStyle.info_container}>
-            <Text style={{marginTop: 10,fontSize: 14, color: '#fff', marginLeft: 15}}>{data.weather[0].description} .Wind speed: {data.wind.speed}. Pressure: {data.main.pressure}</Text>
-            <View style={{borderBottomColor: 'rgba(27,85,131,0.5)',borderBottomWidth: 2, width: '94%',margin: '3%'}}></View>
+            <Text style={{marginTop: 10,fontSize: 14, color: '#fff', marginLeft: 15}}>{data.weather[0].description[0].toUpperCase() + data.weather[0].description.slice(1)} .Wind speed: {data.wind.speed}. Pressure: {data.main.pressure}</Text>
             <ScrollView horizontal={true}  showsHorizontalScrollIndicator={false}>
               {hours.map((item)=> { return (
                 <View key={item} style={WeatherStyle.scroll_container}>
